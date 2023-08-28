@@ -1,5 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ChangeDetectorRef} from '@angular/core';
-import { PostComponent } from './post/post.component';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,24 +6,29 @@ import { PostComponent } from './post/post.component';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements AfterViewInit {
-  title = 'AngIntro';
-  parentMessage:string = 'Message change';
-  message:string | undefined;
-  fromChildOutput:string | undefined;
+export class AppComponent {
+ message: string = 'Message From Typescript Component File';
 
-  @ViewChild(PostComponent)
-  childComp!: PostComponent; 
+ imgUrl: string = 'https://media.istockphoto.com/id/1169427542/photo/google.jpg?s=612x612&w=0&k=20&c=rqoG1nVPxeZeIHFqs0M2TI7CBwpZ1rOTG2H3PWTrdBY=';
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+ bool:boolean = false;
 
-  ngAfterViewInit() {
-    this.message = this.childComp.childMessage;
-    this.cdRef.detectChanges(); // Manually trigger change detection
-    console.log("Message from child:", this.message);
-  }
+ userName: string = "";
 
-  receiveMessage($event: string){
-    this.fromChildOutput = $event;
-  }
+ buttonClicked(){
+  console.log("the button is clicked")
+ }
+
+ onKeyUp($event: any){
+    console.warn($event.target.value)
+ }
+
+ getValue(username: string){
+  console.log(username)
+ }
+
+ getValueTwoWay(){
+  console.log(this.userName);
+ }
+
 }
